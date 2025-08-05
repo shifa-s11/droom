@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk';
 import { useParams } from 'next/navigation';
-import MeetingCall from '@/components/MeetingCall';
-import MeetingSetUp from '@/components/MeetingSetUp';
+import MeetingCall from '@/components/Meeting/MeetingCall';
+import MeetingSetUp from '@/components/Meeting/MeetingSetUp';
 import { useGetCallById } from '@/hooks/useGetCallById';
 import Loader from '@/components/ui/Loader';
 export default  function Meeting() {

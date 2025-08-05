@@ -7,6 +7,7 @@ const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY
 const apiSecret = process.env.NEXT_PUBLIC_STREAM_API_SECRET
 
 export const tokenProvider = async () => {
+   console.log("Running tokenProvider on:", typeof window === "undefined" ? "server" : "client");
   const user = await currentUser()
   if (!user) throw new Error('User not found')
   if (!apiKey || !apiSecret) throw new Error('Stream API credentials missing')

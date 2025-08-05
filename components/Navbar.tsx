@@ -6,7 +6,7 @@ import { SignedIn, UserButton } from '@clerk/nextjs'
 const Navbar = () => {
   return (
     <nav className='primary-bg z-50 fixed w-full px-6 py-5 flex lg:px-8 justify-between'>
-    <Link href='/' className='flex gap-1'>
+    <Link href='/' className='flex gap-1 outline-none '>
         <Image
         src = '/logo.svg'
         alt = 'DROOM'

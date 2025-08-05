@@ -7,11 +7,10 @@ import {
   CallStatsButton,
   PaginatedGridLayout,
   SpeakerLayout,
-  useCall,
+  // useCall,
   CallingState,
 } from "@stream-io/video-react-sdk";
 import React, { useState } from "react";
-import { cn } from "@/lib/utils";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { Users, LayoutList } from "lucide-react";
 import {
@@ -22,15 +21,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSearchParams } from "next/navigation";
-import EndCall from "./ui/EndCall";
-import Loader from "./ui/Loader";
+import EndCall from "@/components/ui/EndCall";
+import Loader from "@/components/ui/Loader";
 
 type CallLayoutType = "grid" | "speaker";
 
 const MeetingCall = () => {
   const searchParams = useSearchParams();
   const isPersonal = !!searchParams.get('personal')
-  const call = useCall();
+  // const call = useCall();
   const [layout, setLayout] = useState<CallLayoutType>("grid");
   const [showParticipant, setShowParticipant] = useState(false);
 const {useCallCallingState} = useCallStateHooks();
