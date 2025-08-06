@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { Call, CallRecording } from '@stream-io/video-react-sdk';
 import Image from 'next/image'
 import {Button} from '@/components/ui/button'
 import { toast } from "sonner";
@@ -13,6 +14,7 @@ interface MeetingCardProps{
   handleClick?: () => void
   isPrevious:boolean
   isRecording:boolean
+  meet: Call | CallRecording;
 }
 const MeetingCard = (
 {icon,description,date,buttonText,link,handleClick,isPrevious,isRecording}:MeetingCardProps
