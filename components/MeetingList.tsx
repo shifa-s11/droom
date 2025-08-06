@@ -118,6 +118,8 @@ import { toast } from "sonner";
 import NewMeet from "@/components/modals/NewMeet";
 import ScheduleMeeting from "@/components/modals/ScheduleMeeting";
 import MeetingCreated from "@/components/modals/MeetingCreated";
+import JoinMeet from "@/components/modals/JoinMeet";
+
 
 const MeetingList = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -129,7 +131,7 @@ const MeetingList = () => {
     link: "",
   });
   const [callInfo, setCallInfo] = useState<Call>();
-  const { user } = useUser();
+  const { user} = useUser();
   const client = useStreamVideoClient();
 
   // 🔴 Instant Meeting: Starts Now
@@ -237,6 +239,7 @@ const createScheduledMeeting = async () => {
         description="View your recordings"
         icon="homeIcon/viewRecord.svg"
         bgCol="bg-[#F9A90E]"
+        handleClick={()=>router.push('/recording')}
       />
 
       {/* 🔴 Instant Meeting Modal */}
@@ -269,7 +272,12 @@ const createScheduledMeeting = async () => {
   onOpenChange={(open) => setShowSuccessModal(open)}
   link={meetingLink}
 />
-
+      {meeting === "isJoining" && (
+        <JoinMeet
+          open={true}
+          onClose={() => setMeeting(undefined)}
+        />
+      )}
     </section>
   );
 };

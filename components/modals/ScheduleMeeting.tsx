@@ -30,6 +30,17 @@ const ScheduleMeeting = ({
   setDate,
   handleClick,
 }: ScheduleMeetingModalProps) => {
+const now = new Date();
+  const filterTime = (time: Date) => {
+    const selectedDate = new Date(date);
+    if (
+      selectedDate.toDateString() === now.toDateString()
+    ) {
+      return time.getTime() > now.getTime();
+    }
+    return true;
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTitle className="hidden">Modal to Schedule a Meeting</DialogTitle>
@@ -57,6 +68,8 @@ const ScheduleMeeting = ({
             timeIntervals={15}
             timeCaption="Time"
             dateFormat="MMMM d, yyyy h:mm aa"
+             minDate={new Date()}
+              filterTime={filterTime}
             className=" secondary-bg w-full rounded-md bg-dark-3 text-white p-2 focus:outline-none"
           />
         </div>

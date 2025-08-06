@@ -168,7 +168,7 @@ import {
   VideoOff,
   MicOff,
   Play,
-} from "lucide-react"; // Import icons from lucide-react
+} from "lucide-react"; 
 import {
   Select,
   SelectContent,
@@ -178,7 +178,8 @@ import {
 } from "@/components/ui/select"; 
 import { Button } from '@/components/ui/button'
 import { Label } from "@/components/ui/label"; 
-import { Switch } from "@/components/ui/switch"; 
+import { Switch } from "@/components/ui/switch";
+import Loader from "@/components/ui/Loader"; 
 
 const MeetingSetUp = ({ setIsSet }: { setIsSet: (value: boolean) => void }) => {
   const call = useCall();
@@ -245,6 +246,11 @@ const MeetingSetUp = ({ setIsSet }: { setIsSet: (value: boolean) => void }) => {
     await call.join();
     setIsSet(true);
   };
+   if (!call || (videoDevices.length === 0 && audioDevices.length === 0)) {
+    return (
+        <Loader />
+    );
+  }
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 space-y-8
