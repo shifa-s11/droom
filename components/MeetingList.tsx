@@ -130,7 +130,8 @@ const MeetingList = () => {
     description: "",
     link: "",
   });
-  const [callInfo, setCallInfo] = useState<Call>();
+  const [callInfo, setCallInfo] = useState<Call>();// 
+  console.log(callInfo);
   const { user} = useUser();
   const client = useStreamVideoClient();
 

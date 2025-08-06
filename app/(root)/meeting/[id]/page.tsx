@@ -8,7 +8,7 @@ import MeetingSetUp from '@/components/Meeting/MeetingSetUp';
 import { useGetCallById } from '@/hooks/useGetCallById';
 import Loader from '@/components/ui/Loader';
 export default  function Meeting() {
-  const {user,isLoaded} = useUser();
+  const {isLoaded} = useUser();
   const[isSet, setIsSet] = useState(false);
   const params = useParams();
   const id = params?.id;
