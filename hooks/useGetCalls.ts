@@ -34,7 +34,9 @@ console.log(error)
         showCalls();
     },[client,user?.id])
     const now = new Date();
-    const endedCall = "hii"
+     const endedCall = calls?.filter(({ state: { startsAt, endedAt } }: Call) => {
+    return (startsAt && new Date(startsAt) < now) || !!endedAt
+  })
     //state holds the dynamic of the current info of the call
     const upcomingCall = calls.filter(({state:{startsAt}}:Call) => {
    return startsAt && new Date(startsAt) > now}

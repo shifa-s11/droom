@@ -11,9 +11,10 @@ interface MeetingCardProps{
   buttonText?:string
   link:string
   handleClick?: () => void
+  isPrevious:boolean
 }
 const MeetingCard = (
-{icon,description,date,buttonText,link,handleClick}:MeetingCardProps
+{icon,description,date,buttonText,link,handleClick,isPrevious}:MeetingCardProps
 ) => {
   return (
     <div className='primary-bg w-full h-full flex flex-col min-h-[250px] p-6 justify-between rounded-xl xl:max-w-[560]'>
@@ -27,7 +28,8 @@ const MeetingCard = (
 <h2 className=' font-bold text-2xl'>{description}</h2>
 <h3 className='font-normal text-base'>{date}</h3>
       </div>
-      <div className='flex items-center gap-3 '>
+      {!isPrevious?(
+         <div className='flex items-center gap-3 '>
         <Button onClick={handleClick}
         className='bg-[#0E78F9] rounded-sm text-white hover:bg-[#0E78F9]/90 px-6'
         >{buttonText}</Button>
@@ -48,6 +50,8 @@ const MeetingCard = (
 Copy Invitation
         </Button>
       </div>
+      ):('')}
+     
     </div>
   )
 }

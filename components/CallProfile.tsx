@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import MeetingCard from './Meeting/MeetingCard';
 
+
 const CallProfile = ({ type }: { type: 'end' | 'upcoming' | 'recording' }) => {
-  const { endedCall, upcomingCall, recordedCall, load } = useGetCalls();
+  const { endedCall, upcomingCall, recordedCall } = useGetCalls();
 const router = useRouter();
 const getType = () => {
   switch (type) {
@@ -20,6 +21,7 @@ const getType = () => {
       return [];
   }
 };
+
 
 const calls = getType(); 
 
@@ -38,6 +40,10 @@ return (
  handleClick={
                () => router.push(`/meeting/${(meet as Call).id}`)
             }
+            isPrevious = {
+              type==='end'?true:false
+            }
+            
         />
       ))
     ) : (
