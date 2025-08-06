@@ -1,32 +1,41 @@
 import { useState, useEffect } from 'react';
-import { Call } from '@stream-io/video-react-sdk';
-import { useStreamVideoClient } from '@stream-io/video-react-sdk';
-export const useGetCallById = (callId) => {
+import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk';
+
+export const useGetCallById = (callId: string | null) => {
     const [call, setCall] = useState<Call>();
     const [loading, setLoading] = useState(true);
     const client = useStreamVideoClient(); 
     
     useEffect(() => {
-        if (!callId) {
+        if (!client || !callId) {
             setLoading(false);
             return;
         }
-        const fetchCall = async () => {
-        const result = await client?.queryCalls({
-          filter_conditions:{
-            id: callId,
-          }
-        })
-    if(result && result.calls.length > 0) {
-        setCall(result.calls[0]);}
-        setLoading(false);
 
-    }
-            if (callId) {
+        const fetchCall = async () => {
+            try {
+                const result = await client.queryCalls({
+                    filter_conditions: {
+                        id: callId, 
+                    }
+                });
+
+                if (result && result.calls.length > 0) {
+                    setCall(result.calls[0]);
+                } else {
+                    setCall(undefined);
+                }
+            } catch (error) {
+                console.error("Failed to fetch call:", error);
+                setCall(undefined);
+            } finally {
+                setLoading(false);
+            }
+        };
+
         fetchCall();
-        }
-}, [callId, client]);
+        
+    }, [callId, client]);
     
     return { call, loading };
-
 }
