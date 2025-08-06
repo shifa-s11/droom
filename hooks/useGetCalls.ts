@@ -8,6 +8,7 @@ export const useGetCalls = () => {
     const client = useStreamVideoClient();
     const {user} = useUser();
 
+
     useEffect(()=> {
         const showCalls = async() => {
         if(!client || !user?.id ) return 
@@ -25,6 +26,7 @@ const {calls} = await client.queryCalls({
 
 })
 setCalls(calls);
+
         }catch(error){
 console.log(error)
         }finally{
@@ -41,8 +43,8 @@ console.log(error)
     const upcomingCall = calls.filter(({state:{startsAt}}:Call) => {
    return startsAt && new Date(startsAt) > now}
 )
-    const recordedCall = "hello"
+
     return {
-        endedCall,upcomingCall,recordedCall,load
+        endedCall,upcomingCall,recordedCall:calls,load
     }
 }

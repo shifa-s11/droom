@@ -20,9 +20,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import EndCall from "@/components/ui/EndCall";
 import Loader from "@/components/ui/Loader";
+
 
 type CallLayoutType = "grid" | "speaker";
 
@@ -34,6 +35,7 @@ const MeetingCall = () => {
   const [showParticipant, setShowParticipant] = useState(false);
 const {useCallCallingState} = useCallStateHooks();
 const callingState = useCallCallingState();
+const router = useRouter();
 if(callingState != CallingState.JOINED) return <Loader/>
 
   const renderLayout = () => {
@@ -63,7 +65,7 @@ if(callingState != CallingState.JOINED) return <Loader/>
       )}
 
       <div className="fixed bottom-0 left-0 w-full flex items-center justify-center gap-5 p-4 bg-black">
-        <CallControls />
+        <CallControls onLeave={()=>router.push('/')}/>
 
         <DropdownMenu>
           <DropdownMenuTrigger className="cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]">
