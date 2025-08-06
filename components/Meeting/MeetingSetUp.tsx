@@ -235,6 +235,11 @@ const MeetingSetUp = ({ setIsSet }: { setIsSet: (value: boolean) => void }) => {
       await microphone.disable();
     }
   };
+     if (!call || (videoDevices.length === 0 && audioDevices.length === 0)) {
+    return (
+        <Loader />
+    );
+  }
 
   const handleJoin = async () => {
     if (!isCamMuted) await camera.enable();
@@ -246,11 +251,7 @@ const MeetingSetUp = ({ setIsSet }: { setIsSet: (value: boolean) => void }) => {
     await call.join();
     setIsSet(true);
   };
-   if (!call || (videoDevices.length === 0 && audioDevices.length === 0)) {
-    return (
-        <Loader />
-    );
-  }
+
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 space-y-8

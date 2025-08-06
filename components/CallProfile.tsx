@@ -234,6 +234,7 @@ const CallProfile = ({ type }: { type: 'end' | 'upcoming' | 'recording' }) => {
                   : () => router.push(`/meeting/${(meet as Call).id}`)
               }
               isPrevious={type === 'end'}
+              isRecording = {type==='recording'}
             />
           ))
         ) : (

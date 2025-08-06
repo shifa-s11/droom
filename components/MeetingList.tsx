@@ -112,7 +112,7 @@
 import React, { useState } from "react";
 import HomeCard from "@/components/HomeCard";
 import { useUser } from "@clerk/nextjs";
-import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
+import { Call, useStreamVideoClient} from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import NewMeet from "@/components/modals/NewMeet";
@@ -143,18 +143,18 @@ const MeetingList = () => {
       const call = client.call("default", id);
       if (!call) throw new Error("Call not created");
 
-      await call.create({
-        data: {
-          starts_at: new Date().toISOString(),
-        },
+await call.create({
+  data: {
+        starts_at: info.date.toISOString(),
         custom: {
-          description: info.description || "Instant meeting",
+          description: info.description,
         },
-        settings_override: {
-          video: { camera_default_on: false },
-          audio: { microphone_default_on: false },
-        },
-      });
+      },
+  // settings_override: {
+  //   video: { camera_default_on: false },
+  //   audio: { microphone_default_on: false },
+  // },
+});
 
       setCallInfo(call);
       toast.success("Meeting started!");
@@ -193,10 +193,10 @@ const createScheduledMeeting = async () => {
           description: info.description,
         },
       },
-      settings_override: {
-        video: { camera_default_on: false },
-        audio: { microphone_default_on: false },
-      },
+      // settings_override: {
+      //   video: { camera_default_on: false },
+      //   audio: { microphone_default_on: false },
+      // },
     });
 
     setCallInfo(call);
