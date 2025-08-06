@@ -11,7 +11,7 @@ export default  function Meeting() {
   const {isLoaded} = useUser();
   const[isSet, setIsSet] = useState(false);
   const params = useParams();
-  const id = params?.id;
+   const id = typeof params?.id === 'string' ? params.id : undefined;
   const{call, loading} = useGetCallById(id);
   if(!isLoaded || loading) return <Loader/> 
   return (
