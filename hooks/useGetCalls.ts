@@ -40,9 +40,11 @@ console.log(error)
     return (startsAt && new Date(startsAt) < now) || !!endedAt
   })
     //state holds the dynamic of the current info of the call
-    const upcomingCall = calls.filter(({state:{startsAt}}:Call) => {
-   return startsAt && new Date(startsAt) > now}
-)
+ const upcomingCall = calls
+    .filter(({ state: { startsAt } }: Call) => {
+      return startsAt && new Date(startsAt) > now;
+    })
+    .sort((a, b) => new Date(a.state.startsAt!).getTime() - new Date(b.state.startsAt!).getTime());
 
     return {
         endedCall,upcomingCall,recordedCall:calls,load
