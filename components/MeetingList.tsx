@@ -155,10 +155,10 @@ await call.create({
   //   audio: { microphone_default_on: false },
   // },
 });
-
+const link = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${call.id}`;
+setMeetingLink(link);
       setCallInfo(call);
       toast.success("Meeting started!");
-      router.push(`/meeting/${call.id}`);
     } catch (error) {
       console.error("Error creating meeting:", error);
       toast.error("Failed to create instant meeting.");
@@ -245,14 +245,15 @@ const createScheduledMeeting = async () => {
 
       {/* 🔴 Instant Meeting Modal */}
       {meeting === "isNew" && (
-        <NewMeet
-          open={true}
-          onOpenChange={(open: boolean) => {
-            if (!open) setMeeting(undefined);
-          }}
-          handleClick={createInstantMeeting}
-        />
-      )}
+  <NewMeet
+    open={true}
+    onOpenChange={(open: boolean) => {
+      if (!open) setMeeting(undefined);
+    }}
+    handleClick={createInstantMeeting}
+    link={meetingLink} // pass link here
+  />
+)}
 
       {/* 🟣 Schedule Meeting Modal */}
       {meeting === "isSchedule" && (

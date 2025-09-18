@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+
 
 interface JoinMeetProps {
   open: boolean;
@@ -12,14 +12,18 @@ interface JoinMeetProps {
 
 const JoinMeet = ({ open, onClose }: JoinMeetProps) => {
   const [meetingLink, setMeetingLink] = useState("");
-  const router = useRouter();
 
-  const handleJoin = () => {
-    if (!meetingLink.trim()) return;
-    // Navigate to the meeting page
-    router.push(meetingLink);
-    onClose();
-  };
+
+const handleJoin = () => {
+  if (!meetingLink.trim()) return;
+
+  let url = meetingLink.trim();
+  if (!/^https?:\/\//i.test(url)) {
+    url = `https://${url}`;
+  }
+  window.location.href = url;
+  onClose();
+};
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
