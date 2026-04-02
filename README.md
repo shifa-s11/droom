@@ -34,30 +34,5 @@ To run the application, use the following commands:
 * `npm run build` (production build)
 * `npm run start` (production mode)
 
-## 📂 Project Structure
-```markdown
-.
-├── app
-│   ├── layout.tsx
-│   ├── globals.css
-│   ├── (root)
-│   │   ├── layout.tsx
-│   │   ├── meeting
-│   │   │   ├── [id]
-│   │   │   │   ├── page.tsx
-│   │   ├── home
-│   │   │   ├── layout.tsx
-│   │   │   ├── page.tsx
-│   │   │   ├── previous
-│   │   │   │   ├── page.tsx
-│   ├── constants
-│   │   ├── index.ts
-├── next.config.ts
-├── package.json
-├── postcss.config.mjs
-├── README.md
-├── tsconfig.json
-```
-
 ## 🤝 Contributing
 To contribute to the project, please submit a pull request with a detailed description of the changes made. Ensure that all code is formatted according to the project's coding standards and that all tests pass.
